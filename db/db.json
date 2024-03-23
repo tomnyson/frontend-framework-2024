@@ -18,5 +18,17 @@
       "image": "https://cdn3.ivivu.com/2015/11/20-hinh-anh-tuyet-dep-ve-Viet-Nam-ivivu-1.jpg",
       "description": "t"
     }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "password": "123456",
+      "role": "admin"
+    },
+    {
+      "username": "user",
+      "password": "123456",
+      "role": "user"
+    }
   ]
 }

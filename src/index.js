@@ -4,11 +4,41 @@ import './index.css';
 import App from './App';
 import DemoAPI from './DemoAPI';
 import reportWebVitals from './reportWebVitals';
+import ErrorPage from './pages/page404'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import PostDetail from './pages/postDetail'
+import Login from './pages/login';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App/>,
+    errorElement: <ErrorPage/>
+  },
+  {
+    path: "/posts",
+    element:  <DemoAPI />
+  },
+  {
+    path: "/login",
+    element:  <Login />
+  },
+  {
+    path: "/posts/:postId",
+    element:  <PostDetail />
+  }
+]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DemoAPI />
+     <RouterProvider router={router} />
   </React.StrictMode>
 );
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import "./App.css"
+import { Link } from "react-router-dom";
 const DemoAPI = () => {
   const [formData, setFormData] = useState({ title: "", image: "", description: "" })
 
@@ -154,6 +155,7 @@ const DemoAPI = () => {
                 <button className="btn btn-delete" onClick={() => handleDelete(item)}>
                   delete
                 </button>
+                <Link to={`/posts/${item.id}`}>view detail</Link>
               </div>
             )
           })}
