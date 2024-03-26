@@ -2,17 +2,20 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import {Container, Row, Col, Button} from 'react-bootstrap'
 import axios from "axios"
-
+import { Link, useNavigate  } from 'react-router-dom';
 export default function Login() {
     const [formData,setFormData] = useState({userName: "", password:""});
+    const navigate = useNavigate();
+
     const handleLogin = (e) =>{
     
     e.preventDefault();
 
-    if(formData.userName !=""  && formData.password !=""){
-        axios.get(`http://localhost:3000/users?username={formData.userName}&password={formData}`)
+    if(formData.userName !==""  && formData.password !==""){
+        axios.get(`http://localhost:3000/users?username=${formData.userName}&password=${formData.password}`)
       .then(function (response) {
-        console.log(response);
+        localStorage.setItem("user", JSON.stringify(response.data[0]));
+        navigate("/posts");
       })
       .catch(function (){
         alert('username or  password is incorrect')
@@ -56,7 +59,7 @@ export default function Login() {
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Button onClick={handleLogin} style={{height: '35px', marginTop: 5, width: '30%'}} variant="primary">Login</Button> 
                 </div>
-               
+                <Link to={'/register'}>Register New Account</Link>
                 </Col>
        
             </Row>

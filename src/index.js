@@ -11,34 +11,19 @@ import {
 } from "react-router-dom";
 import PostDetail from './pages/postDetail'
 import Login from './pages/login';
-
+import RoutePrivate from './routePrivate';
+import Register from './pages/register';
+import Layout from './Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App/>,
-    errorElement: <ErrorPage/>
-  },
-  {
-    path: "/posts",
-    element:  <DemoAPI />
-  },
-  {
-    path: "/login",
-    element:  <Login />
-  },
-  {
-    path: "/posts/:postId",
-    element:  <PostDetail />
-  }
-]);
+
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+     <Layout />
   </React.StrictMode>
 );
 

@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import axios from "axios"
 import "./App.css"
 import { Link } from "react-router-dom";
+import UserContext from "./context";
 const DemoAPI = () => {
   const [formData, setFormData] = useState({ title: "", image: "", description: "" })
 
   const [isEdit, setIsEdit] = useState(false)
 
   const [posts, setPosts] = useState([])
+
+  const [user, setUserName] = useContext(UserContext);
+  console.log("user",user)
   useEffect(() => {
     fetchData()
   }, [])
@@ -114,6 +118,8 @@ const DemoAPI = () => {
     <div className="container">
       <div className="flex">
         <form>
+          <h2>HI: {user}</h2>
+          <button type="button" onClick={()=>setUserName("tomnyson")}>change Name</button>
           <h1>Create post</h1>
           <input
             type="text"
