@@ -4,6 +4,7 @@ import { Container, Row, Col, Button } from "react-bootstrap"
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
 export default function Register() {
+
   const navigate = useNavigate()
   const [formData, setFormData] = useState({ userName: "", password: "", email: "" })
 
