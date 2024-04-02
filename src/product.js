@@ -3,7 +3,8 @@ import axios from "axios"
 import "./App.css"
 import { Link } from "react-router-dom";
 import {UserContext} from "./context";
-const DemoAPI = () => {
+import {Button, Col, Container, Row} from 'react-bootstrap'
+const Product = () => {
   const [formData, setFormData] = useState({ title: "", image: "", description: "" })
 
   const [isEdit, setIsEdit] = useState(false)
@@ -17,7 +18,7 @@ const DemoAPI = () => {
   }, [])
   const fetchData = () => {
     axios
-      .get("http://localhost:3000/posts")
+      .get("http://localhost:3000/products")
       .then(function (response) {
         // handle success
         setPosts(response.data)
@@ -114,61 +115,27 @@ const DemoAPI = () => {
     })
 
   }
-  console.log(user)
+  
+  const handleAddCart = () => {
+    
+  }
   return (
-    <div className="container">
-      <div className="flex">
-        <form>
-          <h2>HI: {user?.username}</h2>
-          <button type="button" onClick={()=>setUserName("tomnyson")}>change Name</button>
-          <h1>Create post</h1>
-          <input
-            type="text"
-            name="title"
-            defaultValue={formData.title}
-            placeholder="title"
-            id="title"
-            onChange={hangleChangeData}
-          />
-          <input
-            type="text"
-            name="image"
-            defaultValue={formData.image}
-            placeholder="image link"
-            id="image"
-            onChange={hangleChangeData}
-          />
-          <textarea
-            rows={5}
-            defaultValue={formData.description}
-            name="description"
-            placeholder="description"
-            onChange={hangleChangeData}
-          />
-          <button onClick={createPost} type="button">
-            {isEdit ? "edit" : "create"}
-          </button>
-        </form>
-        <div className="posts">
+    <Container>
+        <Row style={{marginTop: 20}}>
           {posts.map((item) => {
             return (
-              <div className="item">
+              <Col>
                 <img src={item.image} alt="" />
-                <h2 className="title">{item.title}</h2>
-                <p className="description">{item.description}</p>
-                <button className="btn" onClick={() => handleEdit(item)}>
-                  edit
-                </button>
-                <button className="btn btn-delete" onClick={() => handleDelete(item)}>
-                  delete
-                </button>
-                <Link to={`/posts/${item.id}`}>view detail</Link>
-              </div>
+                <Link to={'posts/' + item.id}> <h2>{item.name}</h2></Link>
+                <p>{item.description}</p>
+                <p>{item.price}</p>
+                 <Button onClick={handleAddCart}>add cart</Button>
+               
+              </Col>
             )
           })}
-        </div>
-      </div>
-    </div>
+        </Row>
+        </Container>
   )
 }
-export default DemoAPI
+export default Product
