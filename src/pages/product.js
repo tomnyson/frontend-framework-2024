@@ -1,8 +1,7 @@
 import { useEffect, useState, useContext } from "react"
 import axios from "axios"
-import "./App.css"
 import { Link } from "react-router-dom";
-import {UserContext} from "./context";
+import {UserContext, CartContext} from "../context";
 import {Button, Col, Container, Row} from 'react-bootstrap'
 const Product = () => {
   const [formData, setFormData] = useState({ title: "", image: "", description: "" })
@@ -10,6 +9,7 @@ const Product = () => {
   const [isEdit, setIsEdit] = useState(false)
 
   const [posts, setPosts] = useState([])
+  const [carts, dispatch] = useContext(CartContext)
 
   const [user, setUserName] = useContext(UserContext);
   console.log("user",user)
@@ -116,7 +116,24 @@ const Product = () => {
 
   }
   
-  const handleAddCart = () => {
+  const handleAddCart = (item) => {
+    /**
+     * goi context cart
+      
+     * goi dispatch add cart
+     */
+    dispatch({ type: "ADD_CART", payload: {...item}});
+    alert("add cart successfully")
+    
+  }
+  const handleRemoveCart = (item) => {
+    /**
+     * goi context cart
+      
+     * goi dispatch add cart
+     */
+    dispatch({ type: "REMOVE_CART", payload: {...item}});
+    alert("remove cart successfully")
     
   }
   return (
@@ -129,7 +146,7 @@ const Product = () => {
                 <Link to={'posts/' + item.id}> <h2>{item.name}</h2></Link>
                 <p>{item.description}</p>
                 <p>{item.price}</p>
-                 <Button onClick={handleAddCart}>add cart</Button>
+                 <Button onClick={()=>handleAddCart(item)}>add cart</Button>
                
               </Col>
             )
