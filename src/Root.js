@@ -12,11 +12,11 @@ export default function Root() {
         <Container>
           <Navbar.Brand href="#home">HOME</Navbar.Brand>
           <Nav className="me-auto">
-            <Link className="link" to={'posts'}>Post</Link>
-            <Link style={{marginLeft: 20}} className="link" to={'products'}>Products</Link>
+            <Link className="nav-link" to={'posts'}>Post</Link>
+            <Link style={{marginLeft: 20}} className="nav-link" to={'products'}>Products</Link>
             <Nav.Link href="#pricing">Contact</Nav.Link>
-            <Link className="link" to={'register'}>Register</Link>
-            <Link style={{marginLeft: 20}} className="link" to={'carts'}>cart</Link>
+            <Link className="nav-link" to={'register'}>Register</Link>
+            <Link style={{marginLeft: 20}} className="nav-link" to={'carts'}>cart</Link>
           </Nav>
           </Container>
       </Navbar>

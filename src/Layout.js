@@ -14,6 +14,7 @@ import Register from "./pages/register"
 import Cart from "./pages/cart"
 import { useState } from "react"
 import Product from "./pages/product"
+import Checkout from "./pages/checkout"
 import { Navbar, Nav, Container, Row, Col, Card } from "react-bootstrap"
 const router = createBrowserRouter([
   {
@@ -48,6 +49,15 @@ const router = createBrowserRouter([
       {
         path: "/carts",
         element: <Cart />,
+      },
+      {
+        path: "/checkout",
+        element: (
+          <RoutePrivate>
+            <Checkout />,
+          </RoutePrivate>
+        ),
+      
       },
       {
         path: "/register",
@@ -151,7 +161,12 @@ const cartReducer = (state, action) => {
         carts: newcarts,
       }
     }
-    
+    case "CLEAR_CART": {
+      return {
+        ...state,
+        carts: [],
+      }
+    }
     default:
       throw new Error(`Unhandled action type: ${action.type}`)
 }}
